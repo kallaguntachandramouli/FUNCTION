@@ -1,0 +1,25 @@
+Functions:
+A stored function is a specialized type of stored program designed to return a single value. 
+Typically, you usestored functions to encapsulate common formulas or business rules,
+making them reusable across SQLstatements or other stored programs.
+Syntax:
+DELIMITER $$
+CREATE FUNCTION function_name(
+ param1,
+ param2,…
+)
+RETURNS datatype
+[NOT] DETERMINISTIC
+BEGIN
+ -- statements
+END $$
+DELIMITER ;
+EX:
+CREATE FUNCTION GetFullName(@FirstName VARCHAR(50), @LastName VARCHAR(50))
+RETURNS VARCHAR(100)
+AS
+BEGIN
+  RETURN CONCAT(@FirstName, ' ', @LastName);
+END;
+
+SELECT dbo.GetFullName('John', 'Doe') AS FullName;
