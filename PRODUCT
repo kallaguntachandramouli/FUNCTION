@@ -1,0 +1,20 @@
+SHOW DATABASES;
+USE PRACTICES;
+SHOW  TABLES;
+DELIMITER $$
+
+CREATE FUNCTION GetProductName(@ProductID INT)
+RETURNS VARCHAR(255)
+AS
+BEGIN
+  DECLARE @ProductName VARCHAR(255);
+  SELECT @ProductName = ProductName 
+  FROM Products 
+  WHERE ProductID = @ProductID;
+  RETURN @ProductName;
+END;
+
+DELIMITER ;
+
+SELECT dbo.GetProductName(1) AS ProductName;
+
